@@ -28,3 +28,27 @@ def execute_query(query, params=None):
         return cursor
     except OSError as e:
         print(f"The error '{e}' occurred or the hero name is already taken")
+
+# ==============================================================
+
+
+# def select_all():
+#     query = """
+#         SELECT * FROM heroes
+#     """
+#     list_of_heros = execute_query(query).fetchall()
+#     print(list_of_heros)
+#     for record in list_of_heros:
+#         print(record[1])
+# select_all()
+
+def see_friends():
+    query = """
+        SELECT * FROM relationships r
+        JOIN relationship_types rt ON r.id = rt.id;
+        """
+    relationships_list = execute_query(query).fetchall()
+    print(relationships_list)
+    # for record in relationships_list:
+    #     print(record[1])
+see_friends()
