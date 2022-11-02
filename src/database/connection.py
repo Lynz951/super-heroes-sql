@@ -61,12 +61,46 @@ def select_all():
 #     for record in list_of_heroes:
 #         print(record[1])
 
+def add_super(name, about_me, biography):
+    query = """
+    INSERT INTO heroes (name, about_me, biography)
+    VALUES (%s, %s, %s);
+    """
+    execute_query(query, (name, about_me, biography))
+
+def delete_super(name):
+    query = """
+    DELETE FROM heroes (name, about_me, biography)
+    WHERE (name = %s);
+    """
+    execute_query(query)
+
 name = input("What is your name? ")
 print("Hello " + name + "! Welcome to The Super Secret Facebook for Superheroes!!")
 
-option_1 = input("Would you like to see a list of our superheroes? yes or no?")
+option_1 = input("Would you like to see a list of our superheroes? yes or no? ")
 if (option_1 == "yes"):
     select_all()
-
 if (option_1 == "no"):
     print("Ok whatever")
+
+option_2 = input("Would you like to join The Super Secret Facebook for Superheroes? yes or no? ")
+if (option_2 == "yes"):
+     print("Awesome!")
+     name = input("What is your super secret super name? ")
+     about_me = input("Can you tell us one super thing about yourself? ")
+     biography = input("Last thing, a short biography about you and your life as a super would really help other supers get to know you... ")
+     add_super(name, about_me, biography)
+    
+if (option_2 == "no"):
+    print("Well nevermind then...")
+
+option_3 = input("Would you like to move on or delete your account? move on or delete? ")
+if (option_3 == "move on"):
+    print("okay!")
+
+if (option_3 == "delete"):
+    print("okok hold on")
+    name = input("What is your super name? ")
+    delete_super(name)
+    print("Ok, all set!")
